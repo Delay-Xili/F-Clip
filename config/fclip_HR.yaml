@@ -1,0 +1,68 @@
+io:
+  logdir: logs/
+  # /home/dxl/Data/wireframe/
+  datadir: /home/dxl/Data/wireframe  # /home/dxl/Data/wireframe     wireframe1_datarota_3w    wireframe2_datarota_4w
+  # huangkun, yichao
+  dataname: shanghaiTech  # york, shanghaiTech
+  resume_from:  # ckpt path when the program was stopped by accident
+  model_initialize_file:
+  num_workers: 4
+  tensorboard_port: 0
+  validation_interval: 24000
+  visual_num: 2
+
+model:
+  image:
+      mean: [109.730, 103.832, 98.681]
+      stddev: [22.275, 22.124, 23.229]
+
+  batch_size: 6
+  eval_batch_size: 2
+
+  # backbone multi-task parameters
+  ang_type: radian
+  lformat: la    # la means length angle, dxdy means
+  head_net: [raw, raw, raw, raw]  # see MultitaskHead for details  raw, mask, raw_upsampler, line
+  head:
+    order: [lcmap, lcoff, lleng, angle]  # [lcmap, lcoff, lleng, angle]
+    lcmap:
+      head_size: 2
+      loss: Focal_loss  # Focal_loss  CE
+      focal_alpha: 4.0
+      loss_weight: 1.
+    lcoff:
+      head_size: 2
+      loss: sigmoid_L1
+      loss_weight: 0.25
+    lleng:
+      head_size: 1
+      loss: sigmoid_L1  # sigmoid_L1, L1, lt
+      loss_weight: 3.
+    angle:
+      head_size: 1
+      loss: sigmoid_L1
+      loss_weight: 1.
+
+  # backbone parameters
+  backbone: hrnet   # hrnet,  hrnet_line
+  num_stacks: 1
+  width: 32  # 32, 48
+
+  # Good augment
+  crop: True
+  resolution: 128
+
+  stage1: fclip
+  delta: 0.8
+  nlines: 1000
+  s_nms: 0
+
+
+optim:
+  name: Adam
+  lr_scheduler: multi_step # single_step, warmUpSingle_step, warmUpCos_step, multi_step
+  lr: 4e-3
+  amsgrad: True
+  weight_decay: 1.0e-4
+  max_epoch: 300
+  lr_decay_epoch: [240,280]

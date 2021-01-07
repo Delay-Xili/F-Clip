@@ -14,11 +14,25 @@ Here are the line detection and tracking results running on the video from [link
 <img src="fig/demo.gif"  width="400">
 </p>
 
-### Main results
+## Main results
 
 <p align="center">
 <img src="fig/FPS.png"  width="400">
 </p>
+
+The accuracy and speed trade-off among most recent wireframe detection methods on [ShanghaiTech dataset](https://github.com/huangkuns/wireframe)
+
+### Qualitative Measures
+
+|     <img src="figs/00329_lcnn.png" width="180">      |    <img src="figs/00329_hawp.pdf" width="180">    |     <img src="figs/00329_tplsd.png" width="180">      | <img src="figs/00329_fclip.pdf" width="180"> | <img src="figs/00329_gt.png" width="180">  |
+| :--------------------------------------------------: | :-----------------------------------------------: | :-------------------------------------------------:   | :------------------------------------------: | :----------------------------------------: |
+| [LCNN](https://github.com/zhou13/lcnn)               | [HAWP](https://github.com/cherubicXN/hawp)        | [TP-LSD](https://github.com/Siyuada7/TP-LSD)          |                  **F-Clip**                  |                Ground Truth                |
+
+More random sampled results can be found in the [supplementary material]() of the paper.
+
+### Quantitative Measures
+
+The following table reports the performance metrics of several wireframe and line detectors on the ShanghaiTech dataset.
 
 <p align="center">
 <img src="fig/table.png"  width="800">

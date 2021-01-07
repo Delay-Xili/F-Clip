@@ -24,7 +24,7 @@ The accuracy and speed trade-off among most recent wireframe detection methods o
 
 ### Qualitative Measures
 
-|     <img src="fig/00329_lcnn.png" width="180">       |    <img src="fig/00329_hawp.pdf" width="180">     |     <img src="fig/00329_tplsd.png" width="180">       | <img src="fig/00329_fclip.pdf" width="180">  | <img src="fig/00329_gt.png" width="180">   |
+|     <img src="fig/00329_lcnn.png" width="180">       |    <img src="fig/00329_hawp.pdf" width="180">     |     <img src="fig/00329_tplsd.png" width="180">       | <embed src="fig/00329_fclip.pdf" width="180" type="application/pdf">  | <img src="fig/00329_gt.png" width="180">   |
 | :--------------------------------------------------: | :-----------------------------------------------: | :-------------------------------------------------:   | :------------------------------------------: | :----------------------------------------: |
 | [LCNN](https://github.com/zhou13/lcnn)               | [HAWP](https://github.com/cherubicXN/hawp)        | [TP-LSD](https://github.com/Siyuada7/TP-LSD)          |                  **F-Clip**                  |                Ground Truth                |
 

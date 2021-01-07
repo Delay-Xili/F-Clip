@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="725e0c07-2b09-44b1-bdd5-3b1202f2f254" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/fig/00329_fclip.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fig/00329_gt.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fig/00329_hawp.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fig/00329_lcnn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fig/00329_tplsd.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,8 +43,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="259">
-                <caret line="26" column="255" selection-start-line="26" selection-start-column="255" selection-end-line="26" selection-end-column="255" />
+              <first_editor relative-caret-position="365">
+                <caret line="26" column="207" selection-start-line="26" selection-start-column="207" selection-end-line="26" selection-end-column="207" />
               </first_editor>
               <second_editor />
             </state>
@@ -292,12 +286,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1609209905362</updated>
-      <workItem from="1609209906595" duration="68309000" />
+      <workItem from="1609209906595" duration="68773000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68309000" />
+    <option name="totallyTimeSpent" value="68773000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1836" y="-68" width="1696" height="949" extended-state="0" />
@@ -315,7 +309,7 @@
       <window_info anchor="bottom" id="File Transfer" weight="0.2266187" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32853717" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24820144" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24580336" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -744,8 +738,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="259">
-            <caret line="26" column="255" selection-start-line="26" selection-start-column="255" selection-end-line="26" selection-end-column="255" />
+          <first_editor relative-caret-position="365">
+            <caret line="26" column="207" selection-start-line="26" selection-start-column="207" selection-end-line="26" selection-end-column="207" />
           </first_editor>
           <second_editor />
         </state>

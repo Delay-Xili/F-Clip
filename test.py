@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Train L-CNN
 Usage:
-    test.py [options] <yaml-config>
+    test.py [options] <yaml-config> <ckpt>
     test.py (-h | --help )
 
 Arguments:
    <yaml-config>                   Path to the yaml hyper-parameter file
+   <ckpt>
 
 Options:
    -h --help                       Show this screen.
@@ -19,8 +20,10 @@ import pprint
 import random
 import os.path as osp
 import datetime
+from skimage import io
 
 import matplotlib as mpl
+mpl.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
@@ -30,10 +33,11 @@ from FClip.config import C, M
 from FClip.datasets import collate
 from FClip.datasets import LineDataset as WireframeDataset
 
-from FClip.models import MultitaskHead
+from FClip.models import MultitaskHead, hg, hgl, hr
 from FClip.models.stage_1 import FClip
 
 
+_PLOT_nlines = 100
 _PLOT = False
 PLTOPTS = {"color": "#33FFFF", "s": 1.2, "edgecolors": "none", "zorder": 5}
 cmap = plt.get_cmap("jet")
@@ -75,9 +79,9 @@ def get_outdir(identifier):
     return outdir
 
 
-def build_model():
+def build_model(cpu=False):
     if M.backbone == "stacked_hourglass":
-        model = FClip.models.hg(
+        model = hg(
             depth=M.depth,
             head=lambda c_in, c_out: MultitaskHead(c_in, c_out),
             num_stacks=M.num_stacks,
@@ -85,7 +89,7 @@ def build_model():
             num_classes=sum(sum(MultitaskHead._get_head_size(), [])),
         )
     elif M.backbone == "hourglass_lines":
-        model = FClip.models.hgl(
+        model = hgl(
             depth=M.depth,
             head=lambda c_in, c_out: MultitaskHead(c_in, c_out),
             num_stacks=M.num_stacks,
@@ -93,7 +97,7 @@ def build_model():
             num_classes=sum(sum(MultitaskHead._get_head_size(), [])),
         )
     elif M.backbone == "hrnet":
-        model = FClip.models.hr(
+        model = hr(
             head=lambda c_in, c_out: MultitaskHead(c_in, c_out),
             num_classes=sum(sum(MultitaskHead._get_head_size(), [])),
         )
@@ -103,10 +107,15 @@ def build_model():
     model = FClip(model)
 
     # model = model.cuda()
-    # model = DataParallel(model).cuda()
+    # model = torch.nn.DataParallel(model)
 
     if C.io.model_initialize_file:
-        model.load_state_dict(torch.load(C.io.model_initialize_file))
+        if cpu:
+            checkpoint = torch.load(C.io.model_initialize_file, map_location=torch.device('cpu'))
+        else:
+            checkpoint = torch.load(C.io.model_initialize_file)
+        model.load_state_dict(checkpoint["model_state_dict"])
+        del checkpoint
         print('=> loading model from {}'.format(C.io.model_initialize_file))
 
     print("Finished constructing model!")
@@ -119,6 +128,7 @@ def main():
     C.update(C.from_yaml(filename=config_file))
     M.update(C.model)
     pprint.pprint(C, indent=4)
+    C.io.model_initialize_file = args["<ckpt>"]
 
     # WARNING: L-CNN is still not deterministic
     random.seed(0)
@@ -148,6 +158,7 @@ def main():
 
     # 2. model
     model = build_model()
+    model.cuda()
 
     outdir = get_outdir(args["--identifier"])
     print("outdir:", outdir)
@@ -186,12 +197,15 @@ def main():
                     **npz_dict,
                 )
                 if _PLOT:
-                    lines, score = H["lines"][i], H["score"][i]
+                    lines, score = H["lines"][i].cpu().numpy() * 4, H["score"][i].cpu().numpy()
                     plt.gca().set_axis_off()
                     plt.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
                     plt.margins(0, 0)
-                    imshow(image)
-                    for (a, b), s in zip(lines, score):
+
+                    iname = val_loader.dataset._get_im_name(index)
+                    im = io.imread(iname)
+                    imshow(im)
+                    for (a, b), s in zip(lines[:_PLOT_nlines], score[:_PLOT_nlines]):
                         plt.plot([a[1], b[1]], [a[0], b[0]], color="orange", linewidth=0.5, zorder=s)
                         plt.scatter(a[1], a[0], **PLTOPTS)
                         plt.scatter(b[1], b[0], **PLTOPTS)

@@ -1,11 +1,9 @@
 io:
   logdir: logs/
-  # /home/dxl/Data/wireframe/
-  datadir: /home/dxl/Data/wireframe  # /home/dxl/Data/wireframe     wireframe1_datarota_3w    wireframe2_datarota_4w
-  # huangkun, yichao
+  datadir: /home/dxl/Data/wireframe1_datarota_3w  # /home/dxl/Data/wireframe     wireframe1_datarota_3w
   dataname: shanghaiTech  # york, shanghaiTech
   resume_from:  # ckpt path when the program was stopped by accident
-  model_initialize_file:
+  model_initialize_file: logs/210105-190305-test_HG1/checkpoint_lastest.pth.tar
   num_workers: 4
   tensorboard_port: 0
   validation_interval: 24000
@@ -63,7 +61,7 @@ model:
 optim:
   name: Adam
   lr_scheduler: multi_step # single_step, warmUpSingle_step, warmUpCos_step, multi_step
-  lr: 4e-4
+  lr: 4.0e-4
   amsgrad: True
   weight_decay: 1.0e-4
   max_epoch: 300

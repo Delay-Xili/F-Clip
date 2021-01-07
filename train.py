@@ -31,8 +31,9 @@ from FClip.datasets import collate
 from FClip.datasets import LineDataset as WireframeDataset
 
 from FClip.models.stage_1 import FClip
-from FClip.models import MultitaskHead
+from FClip.models import MultitaskHead, hg, hgl, hr
 from FClip.lr_schedulers import init_lr_scheduler
+from FClip.trainer import Trainer
 
 
 def get_outdir(identifier):
@@ -49,7 +50,7 @@ def get_outdir(identifier):
 
 def build_model():
     if M.backbone == "stacked_hourglass":
-        model = FClip.models.hg(
+        model = hg(
             depth=M.depth,
             head=lambda c_in, c_out: MultitaskHead(c_in, c_out),
             num_stacks=M.num_stacks,
@@ -57,7 +58,7 @@ def build_model():
             num_classes=sum(sum(MultitaskHead._get_head_size(), [])),
         )
     elif M.backbone == "hourglass_lines":
-        model = FClip.models.hgl(
+        model = hgl(
             depth=M.depth,
             head=lambda c_in, c_out: MultitaskHead(c_in, c_out),
             num_stacks=M.num_stacks,
@@ -65,20 +66,22 @@ def build_model():
             num_classes=sum(sum(MultitaskHead._get_head_size(), [])),
         )
     elif M.backbone == "hrnet":
-        model = FClip.models.hr(
+        model = hr(
             head=lambda c_in, c_out: MultitaskHead(c_in, c_out),
             num_classes=sum(sum(MultitaskHead._get_head_size(), [])),
         )
     else:
         raise NotImplementedError
 
-    model = FClip(model)
+    model = FClip(model).cuda()
 
     # model = model.cuda()
     # model = DataParallel(model).cuda()
 
     if C.io.model_initialize_file:
-        model.load_state_dict(torch.load(C.io.model_initialize_file))
+        checkpoint = torch.load(C.io.model_initialize_file)
+        model.load_state_dict(checkpoint["model_state_dict"])
+        del checkpoint
         print('=> loading model from {}'.format(C.io.model_initialize_file))
 
     print("Finished constructing model!")
@@ -176,7 +179,7 @@ def main():
             max_epoch=C.optim.max_epoch
         )
 
-    trainer = FClip.trainer.Trainer(
+    trainer = Trainer(
         device=device,
         model=model,
         optimizer=optim,
@@ -195,7 +198,6 @@ def main():
     except BaseException:
         if len(glob.glob(f"{outdir}/viz/*")) <= 1:
             shutil.rmtree(outdir)
-            # pass
         raise
 
 

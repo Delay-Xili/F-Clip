@@ -6,9 +6,7 @@ from skimage import io
 import torch.nn.functional as F
 
 from FClip.config import C
-from FClip.nms import non_maximum_suppression, nms_depth
-# from FClip.postprocess import post_jheatmap_torch
-from FClip.line_parsing import OneStageLineParsing, PointParsing
+from FClip.line_parsing import OneStageLineParsing
 
 
 def get_global():

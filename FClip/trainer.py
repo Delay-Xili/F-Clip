@@ -7,11 +7,11 @@ from timeit import default_timer as timer
 import numpy as np
 import torch
 import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 from FClip.utils import recursive_to, ModelPrinter
 from FClip.config import C
 os.environ['QT_QPA_PLATFORM'] = 'offscreen'
-mpl.use('Agg')
 
 
 class Trainer(object):

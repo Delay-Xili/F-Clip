@@ -9,6 +9,7 @@ import torch
 from FClip.line_parsing import OneStageLineParsing
 from FClip.config import M
 from FClip.losses import ce_loss, sigmoid_l1_loss, focal_loss, l12loss
+from FClip.nms import structure_nms_torch
 
 
 class FClip(nn.Module):
@@ -210,12 +211,14 @@ class FClip(nn.Module):
                 angle=heatmap["angle"][k],
                 delta=M.delta,
             )
+            if M.s_nms > 0:
+                line, score = structure_nms_torch(line, score, M.s_nms)
             lines.append(line[None])
             scores.append(score[None])
 
         heatmap["lines"] = torch.cat(lines)
         heatmap["score"] = torch.cat(scores)
-        return {'heatmap': heatmap, 'extra_info': extra_info}
+        return {'heatmaps': heatmap, 'extra_info': extra_info}
 
     def trainval_forward(self, input_dict):
 

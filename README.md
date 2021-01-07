@@ -1,6 +1,6 @@
 # F-Clip — Fully Convolutional Line Parsing
 
-This repository contains the official PyTorch implementation of the paper: *[Xili Dai](https://github.com/Delay-Xili) [Yichao Zhou](https://yichaozhou.com), [Haozhi Qi](http://haozhi.io), [Yi Ma](https://people.eecs.berkeley.edu/~yima/). ["Fully Convolutional Line Parsing."]()  CVPR 2021*.
+This repository contains the official PyTorch implementation of the paper: *[Xili Dai](https://github.com/Delay-Xili), [Yichao Zhou](https://yichaozhou.com), [Haozhi Qi](http://haozhi.io), [Yi Ma](https://people.eecs.berkeley.edu/~yima/). ["Fully Convolutional Line Parsing."]()  CVPR 2021*.
 
 ## Introduction
 
@@ -14,7 +14,15 @@ Here are the line detection and tracking results running on the video from [link
 <img src="fig/demo.gif"  width="400">
 </p>
 
+### Main results
 
+<p align="center">
+<img src="fig/FPS.pdf"  width="400">
+</p>
+
+<p align="center">
+<img src="fig/table.png"  width="800">
+</p>
 
 ## Reproducing Results
 
@@ -40,8 +48,8 @@ Drive.  Those models were
 trained with `config/fclip_xxx.yaml`.  Use `demo.py`, `test.py`, and
 `eval-*.py` to evaluate the pre-trained models.
 
-### Detect Wireframes for Your Own Images
-To test F-Clip on your own images, you need download the pre-trained models and execute
+### Detect Wireframes for Your Own Images or Videos
+To test F-Clip on your own images or videos, you need download the pre-trained models and execute
 
 ```Bash
 CUDA_VISIBLE_DEVICES=0 python ./demo.py <path-to-image-or-video> --model HR --output_dir logs/demo_result --ckpt <path-to-pretrained-pth> --display True

@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="725e0c07-2b09-44b1-bdd5-3b1202f2f254" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build_gif.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fig/demo.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FClip/models/stage_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/FClip/models/stage_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FClip/trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/FClip/trainer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FClip/visualize.py" beforeDir="false" afterPath="$PROJECT_DIR$/FClip/visualize.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/fclip_HG1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/fclip_HG1.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/fclip_HG1_320.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/fclip_HG1_320.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/fclip_HG2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/fclip_HG2.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/fclip_HG2_LB.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/fclip_HG2_LB.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/fclip_HR.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/fclip_HR.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/post.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,8 +43,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="335">
-                <caret line="74" column="96" selection-start-line="74" selection-start-column="80" selection-end-line="74" selection-end-column="96" />
+              <first_editor relative-caret-position="240">
+                <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
               </first_editor>
               <second_editor />
             </state>
@@ -302,16 +286,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1609209905362</updated>
-      <workItem from="1609209906595" duration="66848000" />
+      <workItem from="1609209906595" duration="67098000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66848000" />
+    <option name="totallyTimeSpent" value="67098000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1867" y="-51" width="1696" height="949" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1898428" />
@@ -754,8 +737,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="335">
-            <caret line="74" column="96" selection-start-line="74" selection-start-column="80" selection-end-line="74" selection-end-column="96" />
+          <first_editor relative-caret-position="240">
+            <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
           </first_editor>
           <second_editor />
         </state>

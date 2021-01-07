@@ -17,7 +17,7 @@ Here are the line detection and tracking results running on the video from [link
 ### Main results
 
 <p align="center">
-<img src="fig/FPS.pdf"  width="400">
+<img src="fig/FPS.png"  width="400">
 </p>
 
 <p align="center">

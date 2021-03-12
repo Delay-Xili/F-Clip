@@ -32,12 +32,12 @@ def build_gif(images_pth, output):
         if i % 2 == 0:
             image = transform.resize(io.imread(path), size) * 255
             gif_images.append(image.astype(np.uint8))
-    imageio.mimsave(f"{output}/demo.gif", gif_images, fps=12)
+    imageio.mimsave(f"{output}/demo_raw.gif", gif_images, fps=12)
 
 
 if __name__ == '__main__':
 
-    root = r"/Users/xilidai/Downloads/temp/demo_results/indoor/demo"
+    root = r"/Users/xilidai/Downloads/temp/demo_results/indoor/HR_t0.40"
     out = r"/Users/xilidai/Downloads/temp/demo_results/indoor"
 
     print(f"gif ing {root}")

@@ -202,22 +202,24 @@ class FClip(nn.Module):
         heatmap["lleng"] = output[:, self.head_off[1]: self.head_off[2]].sigmoid()
         heatmap["angle"] = output[:, self.head_off[2]: self.head_off[3]].sigmoid()
 
-        lines, scores = [], []
-        for k in range(output.shape[0]):
-            line, score = OneStageLineParsing.fclip_torch(
-                lcmap=heatmap["lcmap"][k],
-                lcoff=heatmap["lcoff"][k],
-                lleng=heatmap["lleng"][k],
-                angle=heatmap["angle"][k],
-                delta=M.delta,
-            )
-            if M.s_nms > 0:
-                line, score = structure_nms_torch(line, score, M.s_nms)
-            lines.append(line[None])
-            scores.append(score[None])
+        parsing = True
+        if parsing:
+            lines, scores = [], []
+            for k in range(output.shape[0]):
+                line, score = OneStageLineParsing.fclip_torch(
+                    lcmap=heatmap["lcmap"][k],
+                    lcoff=heatmap["lcoff"][k],
+                    lleng=heatmap["lleng"][k],
+                    angle=heatmap["angle"][k],
+                    delta=M.delta,
+                )
+                if M.s_nms > 0:
+                    line, score = structure_nms_torch(line, score, M.s_nms)
+                lines.append(line[None])
+                scores.append(score[None])
 
-        heatmap["lines"] = torch.cat(lines)
-        heatmap["score"] = torch.cat(scores)
+            heatmap["lines"] = torch.cat(lines)
+            heatmap["score"] = torch.cat(scores)
         return {'heatmaps': heatmap, 'extra_info': extra_info}
 
     def trainval_forward(self, input_dict):

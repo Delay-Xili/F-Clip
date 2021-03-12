@@ -103,18 +103,27 @@ if __name__ == "__main__":
     print(args["--mode"])
     if args["--mode"] == "shanghaiTech":
         GT = GT_huang
+        idx = int(len(args["<path>"]) / 2)
+
+        if idx <= 32:
+            batch_sAP_s1(args["<path>"], GT, args["--mode"])
+        else:
+            batch_sAP_s1(args["<path>"][-idx:], GT, args["--mode"])
+
+        # ------------------------
+        C.model.nlines = 5000
+        C.model.s_nms = 2
+        batch_sAP_s1(args["<path>"][-10:], GT, args["--mode"] + "_nline5k_snms2")
     elif args["--mode"] == "york":
         GT = GT_york
+        batch_sAP_s1(args["<path>"], GT, args["--mode"])
+
+        # -------------------------
+        C.model.nlines = 5000
+        C.model.s_nms = 2
+        batch_sAP_s1(args["<path>"], GT, args["--mode"] + "_nline5k_snms2")
     else:
         print(args["--mode"])
         raise ValueError("no such dataset")
-
-    idx = int(len(args["<path>"]) / 2)
-
-    if idx <= 32:
-        batch_sAP_s1(args["<path>"], GT, args["--mode"])
-    else:
-        batch_sAP_s1(args["<path>"][-idx:], GT, args["--mode"])
-
 
 

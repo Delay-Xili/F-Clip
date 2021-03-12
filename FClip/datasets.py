@@ -70,7 +70,7 @@ class LineDataset(Dataset):
             if self.split == "train":
                 if M.crop:
 
-                    s = np.random.choice(np.arange(0.9, 1.6, 0.1))
+                    s = np.random.choice(np.arange(0.9, M.crop_factor, 0.1))
                     image_t, lcmap, lcoff, lleng, angle, cropped_lines, cropped_region \
                         = CropAugmentation.random_crop_augmentation(image_, lpos, s)
                     image_ = image_t

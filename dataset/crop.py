@@ -30,7 +30,6 @@ class CropAugmentation():
         else:
             pass
 
-
         if s == 1:
             #
             x1, x2, y1, y2 = 0, 128, 0, 128

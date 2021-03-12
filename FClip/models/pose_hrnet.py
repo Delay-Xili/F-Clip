@@ -18,12 +18,6 @@ import torch.nn as nn
 from FClip.box import Box
 from FClip.config import M, C
 
-# hr_yaml = "/home/dxl/Code/faster-lcnn-master/config/w32_384x288_adam_lr1e-3.yaml"
-# hr_yaml = "/home/dxl/Code/faster-lcnn-master/config/w48_384x288_adam_lr1e-3.yaml"
-
-# cfg = Box()
-# cfg.update(cfg.from_yaml(filename=hr_yaml))
-# _CFG = cfg.to_dict()
 
 BN_MOMENTUM = 0.1
 logger = logging.getLogger(__name__)
@@ -528,9 +522,9 @@ def tprint(*args):
 def get_hr_config():
     cfg = Box()
     if M.width == 32:
-        hr_yaml = "/home/dxl/Code/faster-lcnn-master/config/w32_384x288_adam_lr1e-3.yaml"
-    elif M.width == 48:
-        hr_yaml = "/home/dxl/Code/faster-lcnn-master/config/w48_384x288_adam_lr1e-3.yaml"
+        hr_yaml = "/home/dxl/Code/F-Clip/config/w32_384x288_adam_lr1e-3.yaml"
+    # elif M.width == 48:
+    #     hr_yaml = "/home/dxl/Code/faster-lcnn-master/config/w48_384x288_adam_lr1e-3.yaml"
     else:
         raise ValueError("no")
 

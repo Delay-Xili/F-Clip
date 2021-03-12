@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Train L-CNN
 Usage:
-    test.py [options] <yaml-config> <ckpt>
+    test.py [options] <yaml-config> <ckpt> <dataname> <datadir>
     test.py (-h | --help )
 
 Arguments:
    <yaml-config>                   Path to the yaml hyper-parameter file
-   <ckpt>
+   <ckpt>                          Path to ckpt
+   <dataname>                      Dataset name
+   <datadir>                       Dataset dir
 
 Options:
    -h --help                       Show this screen.
@@ -65,20 +67,6 @@ def c(x):
     return sm.to_rgba(x)
 
 
-def get_outdir(identifier):
-    # load config
-    name = str(datetime.datetime.now().strftime("%y%m%d-%H%M%S"))
-    # name += "-%s" % git_hash()
-    name += "-%s" % identifier
-    outdir = osp.join(osp.expanduser(C.io.logdir), name)
-    if not osp.exists(outdir):
-        os.makedirs(outdir)
-    C.io.resume_from = outdir
-    C.to_yaml(osp.join(outdir, "config.yaml"))
-    # os.system(f"git diff HEAD > {outdir}/gitdiff.patch")
-    return outdir
-
-
 def build_model(cpu=False):
     if M.backbone == "stacked_hourglass":
         model = hg(
@@ -124,11 +112,19 @@ def build_model(cpu=False):
 
 def main():
     args = docopt(__doc__)
+    C.update(C.from_yaml(filename='config/base.yaml'))
     config_file = args["<yaml-config>"]
     C.update(C.from_yaml(filename=config_file))
     M.update(C.model)
-    pprint.pprint(C, indent=4)
     C.io.model_initialize_file = args["<ckpt>"]
+    C.io.dataname = args["<dataname>"]
+    C.io.datadir = args["<datadir>"]
+
+    pprint.pprint(C, indent=4)
+    bs = 1
+    print("batch size: ", bs)
+    print("data name: ", args["<dataname>"])
+    print("data dir: ", args["<datadir>"])
 
     # WARNING: L-CNN is still not deterministic
     random.seed(0)
@@ -150,20 +146,21 @@ def main():
         "num_workers": C.io.num_workers,
         "pin_memory": True,
     }
+
     dataname = C.io.dataname
     val_loader = torch.utils.data.DataLoader(
-        WireframeDataset(datadir, split="valid", dataset=dataname), batch_size=M.eval_batch_size, **kwargs
+        WireframeDataset(datadir, split="valid", dataset=dataname), batch_size=bs, **kwargs
     )
-    data_size = len(val_loader)
+    data_size = len(val_loader) * bs
 
     # 2. model
     model = build_model()
     model.cuda()
 
-    outdir = get_outdir(args["--identifier"])
+    outdir = args["--identifier"]
     print("outdir:", outdir)
 
-    os.makedirs(f"{outdir}/npz", exist_ok=True)
+    os.makedirs(f"{outdir}/npz/best", exist_ok=True)
     os.makedirs(f"{outdir}/viz", exist_ok=True)
 
     eval_time_ = 0
@@ -193,7 +190,7 @@ def main():
                     if v is not None:
                         npz_dict[k] = v[i].cpu().numpy()
                 np.savez(
-                    f"{outdir}/npz/{index:06}.npz",
+                    f"{outdir}/npz/best/{index:06}.npz",
                     **npz_dict,
                 )
                 if _PLOT:

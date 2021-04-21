@@ -1,7 +1,8 @@
 # F-Clip — Fully Convolutional Line Parsing
 
 This repository contains the official PyTorch implementation of the paper: 
-*[Xili Dai](https://github.com/Delay-Xili), [Xiaojun Yuan](), [Haigang Gong](), [Yi Ma](https://people.eecs.berkeley.edu/~yima/). ["Fully Convolutional Line Parsing."]() *.
+*[Xili Dai](https://github.com/Delay-Xili), [Xiaojun Yuan](), [Haigang Gong](), [Yi Ma](https://people.eecs.berkeley.edu/~yima/). 
+["Fully Convolutional Line Parsing."]() *.
 
 ## Introduction
 
@@ -26,7 +27,7 @@ More random sampled results can be found in the paper.
 
 ### Quantitative Measures
 
-The following table reports the performance metrics of several wireframe and line detectors on the ShanghaiTech dataset.
+The following table reports the performance metrics of several wireframes and line detectors on the ShanghaiTech dataset.
 
 <p align="center">
 <img src="fig/table.png"  width="800">
@@ -62,12 +63,12 @@ python test.py -d 0 -i <directory-to-storage-results> config/fclip_xxx.yaml <pat
 
 
 ### Detect Wireframes for Your Own Images or Videos
-To test F-Clip on your own images or videos, you need download the pre-trained models and execute
+To test F-Clip on your own images or videos, you need to download the pre-trained models and execute
 
 ```Bash
 CUDA_VISIBLE_DEVICES=0 python demo.py <path-to-image-or-video> --model HR --output_dir logs/demo_result --ckpt <path-to-pretrained-pth> --display True
 ```
-Here, `--output_dir` is specifying the directory where the results will stored, and you can specify `--display` to see the results on time.
+Here, `--output_dir` is specifying the directory where the results will store, and you can specify `--display` to see the results on time.
 
 
 ### Downloading the Processed Dataset
@@ -121,7 +122,10 @@ python train.py -d 0 -i HR config/fclip_HR.yaml
 If you find F-Clip useful in your research, please consider citing:
 
 ```
-@inproceedings{
-
+@inproceedings{dai2021fully,
+ author={Xili Dai, Xiaojun Yuan, Haigang Gong, and Yi Ma},
+ title={Fully Convolutional Line Parsing},
+ journal={CoRR},
+ year={2021}
 }
 ```

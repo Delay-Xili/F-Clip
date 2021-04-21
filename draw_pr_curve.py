@@ -17,8 +17,6 @@ from FClip.line_parsing import line_parsing_from_npz
 from tqdm import tqdm
 
 
-# C.update(C.from_yaml(filename="config/fclip_HG1_320.yaml"))
-
 _resolution = 128
 _num = 462
 

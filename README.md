@@ -1,6 +1,7 @@
 # F-Clip — Fully Convolutional Line Parsing
 
-This repository contains the official PyTorch implementation of the paper: *[Xili Dai](https://github.com/Delay-Xili), Xiaojun Yuan, Haigang Gong, [Yi Ma](https://people.eecs.berkeley.edu/~yima/). ["Fully Convolutional Line Parsing."]() *.
+This repository contains the official PyTorch implementation of the paper: 
+*[Xili Dai](https://github.com/Delay-Xili), [Xiaojun Yuan](), [Haigang Gong](), [Yi Ma](https://people.eecs.berkeley.edu/~yima/). ["Fully Convolutional Line Parsing."]() *.
 
 ## Introduction
 
@@ -91,23 +92,20 @@ To evaluate the sAP (recommended) of all your checkpoints under `logs/`, execute
 python eval-sAP.py logs/*/npz/*
 ```
 
-To evaluate AP<sup>H</sup>, you first need to post process your result (see the Post Process section on [lcnn](https://github.com/zhou13/lcnn)).
-In addition, **MATLAB is required for AP<sup>H</sup> evaluation** and `matlab` should be under your
+**MATLAB is required for AP<sup>H</sup> evaluation** and `matlab` should be under your
 `$PATH`.  The **parallel computing toolbox** is highly suggested due to the usage of `parfor`.
 After post processing, execute
 
 ```bash
-python eval-APH.py post/RUN-ITERATION/0_010 post/RUN-ITERATION/0_010-APH
+python eval-APH.py pth/to/input/npz pth/to/output/dir
 ```
-to get the plot, where `0_010` is the threshold used in the post processing, and `post/RUN-ITERATION-APH`
-is the temporary directory storing intermediate files.  Due to the usage of pixel-wise matching, 
+Due to the usage of pixel-wise matching, 
 the evaluation of AP<sup>H</sup> **may take up to an hour** depending on your CPUs.
-
 See the source code of `eval-sAP.py`, `eval-APH.py`, and `FClip/postprocess.py` for more
 details on evaluation.
 
 ### Training
-To train the neural network on GPU 0 (specified by `-d 0`) with the default parameters, execute
+To train the neural network on GPU 0 (specified by `-d 0`) with the different 6 parameters, execute
 ```bash
 python train.py -d 0 -i HG1_D2 config/fclip_HG1_D2.yaml
 python train.py -d 0 -i HG1_D3 config/fclip_HG1_D3.yaml
@@ -117,3 +115,13 @@ python train.py -d 0 -i HG2_LB config/fclip_HG2_LB.yaml
 python train.py -d 0 -i HR config/fclip_HR.yaml
 ```
 
+
+### Citation
+
+If you find F-Clip useful in your research, please consider citing:
+
+```
+@inproceedings{
+
+}
+```

@@ -1,6 +1,6 @@
 io:
   dataname: shanghaiTech  # york, shanghaiTech
-  resume_from: /home/dxl/Code/F-Clip/logs/210302-191609-test_HG2_LB # ckpt path when the program was stopped by accident
+  resume_from:  # ckpt path when the program was stopped by accident
   model_initialize_file:
 
 
@@ -15,6 +15,5 @@ model:
   line_kernel: 7
   line:
     mode: [v, h]
-  resolution: 128
-
+  merge: 'maxpool'  # 'cat', 'maxpool'
 

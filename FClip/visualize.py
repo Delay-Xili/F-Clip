@@ -96,7 +96,7 @@ class VisualizeResults(object):
 
             lines, scores = OneStageLineParsing.fclip_torch(
                 lcmap, lcoff, lleng, angle,
-                delta=C.model.delta, nlines=300, ang_type=C.model.ang_type
+                delta=C.model.delta, nlines=300, ang_type=C.model.ang_type, resolution=C.model.resolution
             )
 
         scale = 1.0 / scores[0]

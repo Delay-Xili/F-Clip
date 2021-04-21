@@ -212,6 +212,7 @@ class FClip(nn.Module):
                     lleng=heatmap["lleng"][k],
                     angle=heatmap["angle"][k],
                     delta=M.delta,
+                    resolution=M.resolution
                 )
                 if M.s_nms > 0:
                     line, score = structure_nms_torch(line, score, M.s_nms)

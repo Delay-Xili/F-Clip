@@ -24,6 +24,8 @@ from FClip.config import C
 from FClip.line_parsing import line_parsing_from_npz
 from tqdm import tqdm
 
+# python eval-sAP.py -m shanghaiTech path/to/npz/directories
+
 
 def line_center_score(path, GT, threshold=5):
     preds = sorted(glob.glob(path))
@@ -40,7 +42,7 @@ def line_center_score(path, GT, threshold=5):
         line, score = line_parsing_from_npz(
             pred_name,
             delta=C.model.delta, nlines=C.model.nlines,
-            s_nms=C.model.s_nms,
+            s_nms=C.model.s_nms, resolution=C.model.resolution
         )
         line = line * (128 / C.model.resolution)
 
@@ -71,8 +73,11 @@ def batch_sAP_s1(paths, GT, dataname):
 
     dirs = sorted(sum([glob.glob(p) for p in paths], []))
     results = FClip.utils.parmap(work, dirs, 8)
-    with open(f"{args['<path>'][0][:-14]}/sAP_{dataname}.csv", "a") as fout:
-        print(f"Resolution: {C.model.resolution}", file=fout)
+    outdir = os.path.dirname(os.path.dirname(args['<path>'][0]))
+    print("outdir: ", outdir)
+    with open(f"{outdir}/sAP_{dataname}.csv", "a") as fout:
+        print(f"nlines: {C.model.nlines}", file=fout)
+        print(f"s_nms: {C.model.s_nms}", file=fout)
         for d, msAP in zip(dirs, results):
             print(f"{d[-13:]}: {msAP[0]:2.1f} {msAP[1]:2.1f} {msAP[2]:2.1f}", file=fout)
 
@@ -111,17 +116,17 @@ if __name__ == "__main__":
             batch_sAP_s1(args["<path>"][-idx:], GT, args["--mode"])
 
         # ------------------------
-        C.model.nlines = 5000
+        C.model.nlines = 1000
         C.model.s_nms = 2
-        batch_sAP_s1(args["<path>"][-10:], GT, args["--mode"] + "_nline5k_snms2")
+        batch_sAP_s1(args["<path>"][-8:], GT, args["--mode"] + "_nline1k_snms2")
     elif args["--mode"] == "york":
         GT = GT_york
         batch_sAP_s1(args["<path>"], GT, args["--mode"])
 
         # -------------------------
-        C.model.nlines = 5000
+        C.model.nlines = 1000
         C.model.s_nms = 2
-        batch_sAP_s1(args["<path>"], GT, args["--mode"] + "_nline5k_snms2")
+        batch_sAP_s1(args["<path>"], GT, args["--mode"] + "_nline1k_snms2")
     else:
         print(args["--mode"])
         raise ValueError("no such dataset")

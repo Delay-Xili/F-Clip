@@ -41,6 +41,7 @@ from FClip.models.stage_1 import FClip
 
 _PLOT_nlines = 100
 _PLOT = False
+_NPZ = True
 PLTOPTS = {"color": "#33FFFF", "s": 1.2, "edgecolors": "none", "zorder": 5}
 cmap = plt.get_cmap("jet")
 norm = mpl.colors.Normalize(vmin=0.9, vmax=1.0)
@@ -94,8 +95,9 @@ def build_model(cpu=False):
 
     model = FClip(model)
 
-    # model = model.cuda()
-    # model = torch.nn.DataParallel(model)
+    if M.backbone == "hrnet":
+        model = model.cuda()
+        model = torch.nn.DataParallel(model)
 
     if C.io.model_initialize_file:
         if cpu:
@@ -183,16 +185,17 @@ def main():
 
             H = result["heatmaps"]
             for i in range(image.shape[0]):
-                index = batch_idx * M.eval_batch_size + i
+                index = batch_idx * bs + i
 
                 npz_dict = {}
                 for k, v in H.items():
                     if v is not None:
                         npz_dict[k] = v[i].cpu().numpy()
-                np.savez(
-                    f"{outdir}/npz/best/{index:06}.npz",
-                    **npz_dict,
-                )
+                if _NPZ:
+                    np.savez(
+                        f"{outdir}/npz/best/{index:06}.npz",
+                        **npz_dict,
+                    )
                 if _PLOT:
                     lines, score = H["lines"][i].cpu().numpy() * 4, H["score"][i].cpu().numpy()
                     plt.gca().set_axis_off()
@@ -219,16 +222,17 @@ def main():
             eval_time['time_backbone'] += extra_info['time_backbone']
             tprint(f"Validation [{batch_idx:5d}/{data_size:5d}]", " " * 25)
 
-    print(f"Testing time: {data_size / eval_time_:.4f} im/s")
-    print('total time: {:.4f}'.format(eval_time_))
-    print(
-        'avg time_backbone: {:.4f}\n front {:.4f}, \n stack0 {:.4f}, \n stack1 {:.4f}'.format(
-            eval_time['time_backbone'] / data_size,
-            eval_time['time_front'] / data_size,
-            eval_time['time_stack0'] / data_size,
-            eval_time['time_stack1'] / data_size,
+    with open(f"{outdir}/speed.csv", "a") as fout:
+        print(f"Testing time: {data_size / eval_time_:.4f} im/s", file=fout)
+        print('total time: {:.4f}'.format(eval_time_), file=fout)
+        print(
+            'avg time_backbone: {:.4f}\n front {:.4f}, \n stack0 {:.4f}, \n stack1 {:.4f}'.format(
+                eval_time['time_backbone'] / data_size,
+                eval_time['time_front'] / data_size,
+                eval_time['time_stack0'] / data_size,
+                eval_time['time_stack1'] / data_size,
+            ), file=fout
         )
-    )
 
 
 def tprint(*args):

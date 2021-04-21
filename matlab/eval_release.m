@@ -1,16 +1,26 @@
-function eval_release(image_path, line_gt_path, output_file, result_path, output_size)
+function eval_release(image_path, line_gt_path, output_file, result_path, output_size, data, method)
 
-data = 'wireframe'
 if strcmp(data, 'york')
     format = '.png';
-else
+elseif strcmp(data, 'shanghaiTech')
     format = '.jpg';
+else
+    s = 'no such dataset'
+    return
 end
 
-%lineThresh = [0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.97, 0.99, 0.995, 0.999, 0.9995, 0.9999]  % lcnn
-lineThresh = [0.5, 0.55, 0.6, 0.7, 0.8, 0.9, 0.92, 0.94, 0.95, 0.96, 0.97, 0.975, 0.985, 0.99, 0.992, 0.994, 0.995, 0.996, 0.997, 0.998, 0.999, 0.9995]  % hawp
-%lineThresh = [0.1, 0.2, 0.25, 0.27, 0.3, 0.315, 0.33, 0.345, 0.36, 0.38, 0.4, 0.42, 0.45, 0.47, 0.49, 0.5, 0.52, 0.54, 0.56, 0.58]  % fclip
-%lineThresh = [0.01, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8]  % tplsd
+if strcmp(method, 'LCNN')
+    lineThresh = [0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.97, 0.99, 0.995, 0.999, 0.9995, 0.9999]  % lcnn
+elseif strcmp(method, 'HAWP')
+    lineThresh = [0.5, 0.55, 0.6, 0.7, 0.8, 0.9, 0.92, 0.94, 0.95, 0.96, 0.97, 0.975, 0.985, 0.99, 0.992, 0.994, 0.995, 0.996, 0.997, 0.998, 0.999, 0.9995]  % hawp
+elseif strcmp(method, 'F-Clip')
+    lineThresh = [0.1, 0.2, 0.25, 0.27, 0.3, 0.315, 0.33, 0.345, 0.36, 0.38, 0.4, 0.42, 0.45, 0.47, 0.49, 0.5, 0.52, 0.54, 0.56, 0.58]  % fclip
+elseif strcmp(method, 'TPLSD')
+    lineThresh = [0.01, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8]  % tplsd
+else
+    s = 'no such method'
+    return
+end
 
 
 nLineThresh = size(lineThresh, 2);

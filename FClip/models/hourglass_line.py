@@ -51,7 +51,13 @@ class BottleneckLine(nn.Module):
 
         assert len(layer) > 0
 
-        merge = nn.Conv2d(planes * len(layer), planes, kernel_size=1)
+        if M.merge == 'cat':
+            merge = nn.Conv2d(planes * len(layer), planes, kernel_size=1)
+        elif M.merge == 'maxpool':
+            ll = len(M.line.mode)
+            merge = nn.MaxPool3d((ll, 1, 1), stride=(ll, 1, 1))
+        else:
+            raise ValueError()
 
         return nn.ModuleList(layer), merge
 
@@ -65,8 +71,17 @@ class BottleneckLine(nn.Module):
         out = self.bn2(out)
         out = self.relu(out)
 
-        tt = torch.cat([conv(out) for conv in self.conv2], dim=1)
+        if M.merge == 'cat':
+            tt = torch.cat([conv(out) for conv in self.conv2], dim=1)
+        elif M.merge == 'maxpool':
+            tt = torch.cat([torch.unsqueeze(conv(out), 2) for conv in self.conv2], dim=2)
+        else:
+            raise ValueError()
         out = self.merge(tt)
+        out = torch.squeeze(out, 2)
+
+        # print(out.size())
+        # exit()
 
         out = self.bn3(out)
         out = self.relu(out)

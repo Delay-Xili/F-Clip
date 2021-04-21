@@ -1,10 +1,10 @@
 # F-Clip — Fully Convolutional Line Parsing
 
-This repository contains the official PyTorch implementation of the paper: *[Xili Dai](https://github.com/Delay-Xili), [Yichao Zhou](https://yichaozhou.com), [Haozhi Qi](http://haozhi.io), [Yi Ma](https://people.eecs.berkeley.edu/~yima/). ["Fully Convolutional Line Parsing."]()  CVPR 2021*.
+This repository contains the official PyTorch implementation of the paper: *[Xili Dai](https://github.com/Delay-Xili), Xiaojun Yuan, Haigang Gong, [Yi Ma](https://people.eecs.berkeley.edu/~yima/). ["Fully Convolutional Line Parsing."]() *.
 
 ## Introduction
 
-[F-Clip]() is a simple and effective neural network for detecting the line from a given image and video. 
+Our method (F-Clip) is a simple and effective neural network for detecting the line from a given image and video. 
 It outperforms the previous state-of-the-art wireframe and line detectors by a large margin on both accuracy and speed. 
 We hope that this repository serves as a new reproducible baseline for future researches in this area.
 

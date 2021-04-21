@@ -41,6 +41,7 @@ model:
   # data augment: expand
   crop: True
   crop_factor: 1.6
+  resolution: 128
 
   stage1: fclip
   delta: 0.8

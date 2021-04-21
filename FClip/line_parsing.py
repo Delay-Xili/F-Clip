@@ -2,13 +2,12 @@ import torch
 import numpy as np
 
 from FClip.nms import non_maximum_suppression, structure_nms
-from FClip.config import C
 
 
 class PointParsing():
 
     @staticmethod
-    def jheatmap_torch(jmap, joff, delta=0.8, K=1000, kernel=3, joff_type="raw"):
+    def jheatmap_torch(jmap, joff, delta=0.8, K=1000, kernel=3, joff_type="raw", resolution=128):
         h, w = jmap.shape
         lcmap = non_maximum_suppression(jmap[None, ...], delta, kernel).reshape(-1)
         score, index = torch.topk(lcmap, k=int(K))
@@ -27,56 +26,57 @@ class PointParsing():
             y = (index // w).float()
             x = (index % w).float()
 
-        yx = torch.cat([y[..., None], x[..., None]], dim=-1).clamp(0, C.model.resolution - 1e-6)
+        yx = torch.cat([y[..., None], x[..., None]], dim=-1).clamp(0, resolution - 1e-6)
 
         return yx, score, index
 
     @staticmethod
-    def jheatmap_numpy(jmap, joff, delta=0.8, K=1000, kernel=3):
+    def jheatmap_numpy(jmap, joff, delta=0.8, K=1000, kernel=3, resolution=128):
 
         jmap = torch.from_numpy(jmap)
         if joff is not None:
             joff = torch.from_numpy(joff)
-        xy, score, index = PointParsing.jheatmap_torch(jmap, joff, delta, K, kernel)
+        xy, score, index = PointParsing.jheatmap_torch(jmap, joff, delta, K, kernel, resolution=resolution)
         v = torch.cat([xy, score[:, None]], 1)
         return v.numpy()
 
 
 class OneStageLineParsing():
-    @staticmethod
-    def get_resolution():
-        return C.model.resolution
+    # @staticmethod
+    # def get_resolution():
+    #     return C.model.resolution
 
     @staticmethod
-    def fclip_numpy(lcmap, lcoff, lleng, angle, delta=0.8, nlines=1000, ang_type="radian", kernel=3):
+    def fclip_numpy(lcmap, lcoff, lleng, angle, delta=0.8, nlines=1000, ang_type="radian", kernel=3, resolution=128):
         lcmap = torch.from_numpy(lcmap)
         lcoff = torch.from_numpy(lcoff)
         lleng = torch.from_numpy(lleng)
         angle = torch.from_numpy(angle)
 
-        lines, scores = OneStageLineParsing.fclip_torch(lcmap, lcoff, lleng, angle, delta, nlines, ang_type, kernel)
+        lines, scores = OneStageLineParsing.fclip_torch(lcmap, lcoff, lleng, angle, delta, nlines, ang_type, kernel, resolution=resolution)
 
         return lines.numpy(), scores.numpy()
 
     @staticmethod
-    def fclip_torch(lcmap, lcoff, lleng, angle, delta=0.8, nlines=1000, ang_type="radian", kernel=3):
+    def fclip_torch(lcmap, lcoff, lleng, angle, delta=0.8, nlines=1000, ang_type="radian", kernel=3, resolution=128):
 
-        xy, score, index = PointParsing.jheatmap_torch(lcmap, lcoff, delta, nlines, kernel)
-        lines = OneStageLineParsing.fclip_merge(xy, index, lleng, angle, ang_type)
+        xy, score, index = PointParsing.jheatmap_torch(lcmap, lcoff, delta, nlines, kernel, resolution=resolution)
+        lines = OneStageLineParsing.fclip_merge(xy, index, lleng, angle, ang_type, resolution=resolution)
 
         return lines, score
 
     @staticmethod
-    def fclip_merge(xy, xy_idx, length_regress, angle_regress, ang_type="radian"):
+    def fclip_merge(xy, xy_idx, length_regress, angle_regress, ang_type="radian", resolution=128):
         """
         :param xy: (K, 2)
         :param xy_idx: (K,)
         :param length_regress: (H, W)
         :param angle_regress:  (H, W)
         :param ang_type
+        :param resolution
         :return:
         """
-        resolution = OneStageLineParsing.get_resolution()
+        # resolution = OneStageLineParsing.get_resolution()
         xy_idx = xy_idx.reshape(-1)
         lleng_regress = length_regress.reshape(-1)[xy_idx]  # (K,)
         angle_regress = angle_regress.reshape(-1)[xy_idx]   # (K,)
@@ -99,7 +99,7 @@ class OneStageLineParsing():
 def line_parsing_from_npz(
         npz_name, ang_type="radian",
         delta=0.8, nlines=1000, kernel=3,
-        s_nms=0
+        s_nms=0, resolution=128
 ):
     # -------line parsing----
     with np.load(npz_name) as fpred:
@@ -108,7 +108,7 @@ def line_parsing_from_npz(
         lleng = fpred["lleng"]
         angle = fpred["angle"]
         line, score = OneStageLineParsing.fclip_numpy(
-            lcmap, lcoff, lleng, angle, delta, nlines, ang_type, kernel
+            lcmap, lcoff, lleng, angle, delta, nlines, ang_type, kernel, resolution=resolution
         )
 
     # ---------step 2 remove line by structure nms ----

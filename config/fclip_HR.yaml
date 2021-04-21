@@ -15,8 +15,8 @@ model:
   num_stacks: 1
   width: 32  # 32
 
-  resolution: 128
-
 
 optim:
   lr: 4.0e-3
+  max_epoch: 220
+  lr_decay_epoch: [160,200]

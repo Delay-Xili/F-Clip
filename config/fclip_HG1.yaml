@@ -11,5 +11,3 @@ model:
   num_stacks: 1
   num_blocks: 1
   inplanes: 64
-  resolution: 128
-

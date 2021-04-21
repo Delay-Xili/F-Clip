@@ -20,6 +20,7 @@ import subprocess
 import numpy as np
 import scipy.io as sio
 import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 from scipy import interpolate
 from docopt import docopt
@@ -32,14 +33,11 @@ del mpl.font_manager.weight_dict["roman"]
 mpl.font_manager._rebuild()
 
 output_size = 128
-dataname = 'shanghaiTech'  # york, shanghaiTech
+resolution = None
+dataname = None
+image_path = None
+line_gt_path = None
 
-if dataname == 'shanghaiTech':
-    image_path = "/home/dxl/Data/wireframe/valid-images/"
-    line_gt_path = "/home/dxl/Data/wireframe/valid/"
-else:
-    image_path = "/home/dxl/Data/york/valid-image/"
-    line_gt_path = "/home/dxl/Data/york/valid/"
 
 # python eval-APH.py logs/path/to/npz/pth logs/output/pth/APH
 
@@ -56,9 +54,9 @@ def read_fclip(pred_pth, output):
         line, score = line_parsing_from_npz(
             path,
             delta=0.8, nlines=2500,
-            s_nms=0.
+            s_nms=0., resolution=resolution
         )
-        line = line * (128 / output_size)
+        line = line * (128 / resolution)
 
         np.savez(
             f"{output}/{path[-10:]}",
@@ -103,7 +101,7 @@ def read_hawp(result_path, output_dir):
         # print(np.amax(lines_pred[:, :, 1]), np.amin(lines_pred[:, :, 1]))
 
         if dataname == 'wireframe':
-            img_idx = images.index(filename[:-4]+'.jpg')
+            img_idx = images.index(filename[:-4] + '.jpg')
         else:
             img_idx = images.index(filename[:-4] + '.png')
 
@@ -146,29 +144,34 @@ def read_tplsd(src_pth, output_dir):
         )
 
 
-def main():
+def main(methods):
     args = docopt(__doc__)
     src_dir = args["<src>"]
     tar_dir = args["<dst>"]
 
-    methods = 'F-Clip'  # ['F-Clip', 'LCNN', 'HAWP', 'TPLSD']
     if methods == 'F-Clip':
         pth_apH = osp.join(tar_dir, 'npz_APH')
         read_fclip(src_dir, pth_apH)
         file_list = glob.glob(osp.join(pth_apH, "*.npz"))
+        thresh = [0.1, 0.2, 0.25, 0.27, 0.3, 0.315, 0.33, 0.345, 0.36, 0.38, 0.4, 0.42, 0.45, 0.47, 0.49, 0.5, 0.52,
+                  0.54, 0.56, 0.58]
 
     elif methods == 'LCNN':
         file_list = glob.glob(osp.join(src_dir, "*.npz"))
+        thresh = [0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.97, 0.99, 0.995, 0.999, 0.9995, 0.9999]
 
     elif methods == 'HAWP':
         read_hawp(src_dir, tar_dir)
         pth_apH = osp.join(tar_dir, 'npz_APH')
         file_list = glob.glob(osp.join(pth_apH, "*.npz"))
+        thresh = [0.5, 0.55, 0.6, 0.7, 0.8, 0.9, 0.92, 0.94, 0.95, 0.96, 0.97, 0.975, 0.985, 0.99, 0.992, 0.994, 0.995,
+                  0.996, 0.997, 0.998, 0.999, 0.9995]
 
     elif methods == 'TPLSD':
         read_tplsd(src_dir, tar_dir)
         pth_apH = osp.join(tar_dir, 'npz_APH')
         file_list = glob.glob(osp.join(pth_apH, "*.npz"))
+        thresh = [0.01, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8]
     else:
         raise ValueError()
 
@@ -176,18 +179,6 @@ def main():
     target_dir = osp.join(tar_dir, "mat")
     os.makedirs(target_dir, exist_ok=True)
     print(f"intermediate matlab results will be saved at: {target_dir}")
-
-    # file_list = glob.glob(osp.join(pth_apH, "*.npz"))
-    if methods in ['LCNN']:
-        thresh = [0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.97, 0.99, 0.995, 0.999, 0.9995, 0.9999]
-    elif methods in ['HAWP']:
-        thresh = [0.5, 0.55, 0.6, 0.7, 0.8, 0.9, 0.92, 0.94, 0.95, 0.96, 0.97, 0.975, 0.985, 0.99, 0.992, 0.994, 0.995, 0.996, 0.997, 0.998, 0.999, 0.9995]
-    elif methods in ['F-Clip']:
-        thresh = [0.1, 0.2, 0.25, 0.27, 0.3, 0.315, 0.33, 0.345, 0.36, 0.38, 0.4, 0.42, 0.45, 0.47, 0.49, 0.5, 0.52, 0.54, 0.56, 0.58]
-    elif methods in ['TPLSD']:
-        thresh = [0.01, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8]
-    else:
-        raise ValueError()
 
     for t in thresh:
         socress = []
@@ -212,8 +203,8 @@ def main():
 
     cmd = "matlab -nodisplay -nodesktop "
     cmd += '-r "dbstop if error; '
-    cmd += "eval_release('{:s}', '{:s}', '{:s}', '{:s}', {:d}); quit;\"".format(
-        image_path, line_gt_path, output_file, target_dir, output_size
+    cmd += "eval_release('{:s}', '{:s}', '{:s}', '{:s}', {:d}, '{:s}', '{:s}'); quit;\"".format(
+        image_path, line_gt_path, output_file, target_dir, output_size, dataname, methods
     )
     print("Running:\n{}".format(cmd))
     os.environ["MATLABPATH"] = "matlab/"
@@ -267,7 +258,28 @@ def main():
     # plt.show()
 
 
+def config_global(resolu, dataset):
+    global resolution, dataname, image_path, line_gt_path
+    resolution = resolu
+    dataname = dataset  # york, shanghaiTech
+
+    if dataname == 'shanghaiTech':
+        image_path = "/home/dxl/Data/wireframe/valid-images/"
+        line_gt_path = "/home/dxl/Data/wireframe/valid/"
+    elif dataname == 'york':
+        image_path = "/home/dxl/Data/york/valid-image/"
+        line_gt_path = "/home/dxl/Data/york/valid/"
+    else:
+        raise ValueError
+
+
 if __name__ == "__main__":
+
+    resolution_ = 128
+    dataset = 'york'  # york, shanghaiTech
+    methods = 'F-Clip'  # ['F-Clip', 'LCNN', 'HAWP', 'TPLSD']
+
+    config_global(resolution_, dataset)
+
     plt.tight_layout()
-    # msic()
-    main()
+    main(methods)

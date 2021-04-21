@@ -7,10 +7,8 @@ io:
 model:
   # backbone parameters
   backbone: stacked_hourglass  # stacked_hourglass, hourglass_lines
-  depth: 4
+  depth: 2
   num_stacks: 1
   num_blocks: 1
   inplanes: 64
-  resolution: 80
-
 

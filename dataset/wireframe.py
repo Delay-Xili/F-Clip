@@ -212,52 +212,52 @@ def main():
             os.makedirs(os.path.join(data_output, batch), exist_ok=True)
             path = os.path.join(data_output, batch, prefix)
 
-            # lines0 = lines.copy()
-            # save_heatmap(f"{path}_0", im[::, ::], lines0)
+            lines0 = lines.copy()
+            save_heatmap(f"{path}_0", im[::, ::], lines0)
 
             if batch != "valid":
-                # lines1 = lines.copy()
-                # lines1[:, :, 0] = im.shape[1] - lines1[:, :, 0]
-                # im1 = im[::, ::-1]
-                # save_heatmap(f"{path}_1", im1, lines1)
-                #
-                # lines2 = lines.copy()
-                # lines2[:, :, 1] = im.shape[0] - lines2[:, :, 1]
-                # im2 = im[::-1, ::]
-                # save_heatmap(f"{path}_2", im2, lines2)
-                #
-                # lines3 = lines.copy()
-                # lines3[:, :, 0] = im.shape[1] - lines3[:, :, 0]
-                # lines3[:, :, 1] = im.shape[0] - lines3[:, :, 1]
-                # im3 = im[::-1, ::-1]
-                # save_heatmap(f"{path}_3", im3, lines3)
-                #
-                # im4, lines4 = prepare_rotation(im, lines.copy())
-                # lines4 = coor_rot90(lines4.reshape((-1, 2)), (im4.shape[1] / 2, im4.shape[0] / 2),
-                #                     1)  # rot90 on anticlockwise
-                # im4 = np.rot90(im4, k=1)  # rot90 on anticlockwise
-                # save_heatmap(f"{path}_4", im4, lines4.reshape((-1, 2, 2)))
-                #
-                # im5, lines5 = prepare_rotation(im, lines.copy())
-                # lines5 = coor_rot90(lines5.reshape((-1, 2)), (im5.shape[1] / 2, im5.shape[0] / 2),
-                #                     3)  # rot90 on clockwise
-                # im5 = np.rot90(im5, k=-1)  # rot90 on clockwise
-                # save_heatmap(f"{path}_5", im5, lines5.reshape((-1, 2, 2)))
-
-                linesf = lines.copy()
-                linesf[:, :, 0] = im.shape[1] - linesf[:, :, 0]
+                lines1 = lines.copy()
+                lines1[:, :, 0] = im.shape[1] - lines1[:, :, 0]
                 im1 = im[::, ::-1]
-                im6, lines6 = prepare_rotation(im1, linesf.copy())
-                lines6 = coor_rot90(lines6.reshape((-1, 2)), (im6.shape[1] / 2, im6.shape[0] / 2),
-                                    1)  # rot90 on anticlockwise
-                im6 = np.rot90(im6, k=1)  # rot90 on anticlockwise
-                save_heatmap(f"{path}_6", im6, lines6.reshape((-1, 2, 2)))
+                save_heatmap(f"{path}_1", im1, lines1)
 
-                im7, lines7 = prepare_rotation(im1, linesf.copy())
-                lines7 = coor_rot90(lines7.reshape((-1, 2)), (im7.shape[1] / 2, im7.shape[0] / 2),
+                lines2 = lines.copy()
+                lines2[:, :, 1] = im.shape[0] - lines2[:, :, 1]
+                im2 = im[::-1, ::]
+                save_heatmap(f"{path}_2", im2, lines2)
+
+                lines3 = lines.copy()
+                lines3[:, :, 0] = im.shape[1] - lines3[:, :, 0]
+                lines3[:, :, 1] = im.shape[0] - lines3[:, :, 1]
+                im3 = im[::-1, ::-1]
+                save_heatmap(f"{path}_3", im3, lines3)
+
+                im4, lines4 = prepare_rotation(im, lines.copy())
+                lines4 = coor_rot90(lines4.reshape((-1, 2)), (im4.shape[1] / 2, im4.shape[0] / 2),
+                                    1)  # rot90 on anticlockwise
+                im4 = np.rot90(im4, k=1)  # rot90 on anticlockwise
+                save_heatmap(f"{path}_4", im4, lines4.reshape((-1, 2, 2)))
+
+                im5, lines5 = prepare_rotation(im, lines.copy())
+                lines5 = coor_rot90(lines5.reshape((-1, 2)), (im5.shape[1] / 2, im5.shape[0] / 2),
                                     3)  # rot90 on clockwise
-                im7 = np.rot90(im7, k=-1)  # rot90 on clockwise
-                save_heatmap(f"{path}_7", im7, lines7.reshape((-1, 2, 2)))
+                im5 = np.rot90(im5, k=-1)  # rot90 on clockwise
+                save_heatmap(f"{path}_5", im5, lines5.reshape((-1, 2, 2)))
+
+                # linesf = lines.copy()
+                # linesf[:, :, 0] = im.shape[1] - linesf[:, :, 0]
+                # im1 = im[::, ::-1]
+                # im6, lines6 = prepare_rotation(im1, linesf.copy())
+                # lines6 = coor_rot90(lines6.reshape((-1, 2)), (im6.shape[1] / 2, im6.shape[0] / 2),
+                #                     1)  # rot90 on anticlockwise
+                # im6 = np.rot90(im6, k=1)  # rot90 on anticlockwise
+                # save_heatmap(f"{path}_6", im6, lines6.reshape((-1, 2, 2)))
+                #
+                # im7, lines7 = prepare_rotation(im1, linesf.copy())
+                # lines7 = coor_rot90(lines7.reshape((-1, 2)), (im7.shape[1] / 2, im7.shape[0] / 2),
+                #                     3)  # rot90 on clockwise
+                # im7 = np.rot90(im7, k=-1)  # rot90 on clockwise
+                # save_heatmap(f"{path}_7", im7, lines7.reshape((-1, 2, 2)))
 
             print("Finishing", os.path.join(data_output, batch, prefix))
 

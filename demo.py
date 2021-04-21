@@ -181,8 +181,8 @@ class FClipDetect:
     def __init__(self, modeluse, ckpt=None):
         from test import build_model, C, M
 
-        if modeluse == 'HG1_320':
-            config_file = 'config/fclip_HG1_320.yaml'
+        if modeluse == 'HG1_D3':
+            config_file = 'config/fclip_HG1_D3.yaml'
         elif modeluse == 'HG1':
             config_file = 'config/fclip_HG1.yaml'
         elif modeluse == 'HG2':

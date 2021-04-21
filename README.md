@@ -8,12 +8,6 @@ Our method (F-Clip) is a simple and effective neural network for detecting the l
 It outperforms the previous state-of-the-art wireframe and line detectors by a large margin on both accuracy and speed. 
 We hope that this repository serves as a new reproducible baseline for future researches in this area.
 
-Here are the line detection and tracking results running on the video from [link](https://www.facebook.com/watch/?v=1334579700223691).
-
-<p align="center">
-<img src="fig/demo.gif"  width="400">
-</p>
-
 ## Main results
 
 <p align="center">
@@ -27,7 +21,7 @@ The accuracy and speed trade-off among most recent wireframe detection methods o
 <img src="fig/Qualitative.png"  width="800">
 </p>
 
-More random sampled results can be found in the [supplementary material]() of the paper.
+More random sampled results can be found in the paper.
 
 ### Quantitative Measures
 
@@ -54,37 +48,41 @@ conda install -y pyyaml docopt matplotlib scikit-image opencv
 mkdir data logs post
 ```
 
-### Pre-trained Models
+### Testing Pre-trained Models
 
-You can download our reference 5 pre-trained models [HG1_320](), [HG1](), [HG2](), [HG2_LB](), and [HGR]() from Google
-Drive.  Those models were
-trained with `config/fclip_xxx.yaml`.  Use `demo.py`, `test.py`, and
-`eval-*.py` to evaluate the pre-trained models.
+You can download our reference 6 pre-trained models HG1_D2, HG1_D3, HG1, HG2, HG2_LB, and HR from [Google
+Drive]().  Those models were
+trained with `config/fclip_xxx.yaml`.  
+To generate wireframes on the validation dataset with the pretrained model, execute
+
+```bash
+python test.py -d 0 -i <directory-to-storage-results> config/fclip_xxx.yaml <path-to-xxx-ckpt-file> shanghaiTech/york <path-to-validation-set>
+```
+
 
 ### Detect Wireframes for Your Own Images or Videos
 To test F-Clip on your own images or videos, you need download the pre-trained models and execute
 
 ```Bash
-CUDA_VISIBLE_DEVICES=0 python ./demo.py <path-to-image-or-video> --model HR --output_dir logs/demo_result --ckpt <path-to-pretrained-pth> --display True
+CUDA_VISIBLE_DEVICES=0 python demo.py <path-to-image-or-video> --model HR --output_dir logs/demo_result --ckpt <path-to-pretrained-pth> --display True
 ```
 Here, `--output_dir` is specifying the directory where the results will stored, and you can specify `--display` to see the results on time.
 
 
 ### Downloading the Processed Dataset
-To-be-determined
+You can download the processed dataset `wireframe.zip` and `york.zip` manually from Google
+Drive ([link1](https://drive.google.com/file/d/1q8pQzYBJPh3brHUhjkVIxfbLk0XEigIe/view?usp=sharing), 
+[link2](https://drive.google.com/file/d/1lapVcNtw7SNzH8cpHj2H6tIzyAom4MJe/view?usp=sharing)). 
 
-### Training
-To train the neural network on GPU 0 (specified by `-d 0`) with the default parameters, execute
-```bash
-python ./train.py -d 0 --identifier baseline config/fclip_HG1.yaml
-```
-
-## Testing Pretrained Models
-To generate wireframes on the validation dataset with the pretrained model, execute
+#### Processing the Dataset
+*Optionally*, you can pre-process (e.g., generate heat maps, do data augmentation) the dataset from
+scratch rather than downloading the processed one.  
 
 ```bash
-python ./train.py -d 0 --identifier <directory-to-storage-results> config/fclip_HG1.yaml <path-to-pretrained-pth>
+dataset/wireframe.py data/wireframe_raw data/wireframe
+dataset/wireframe_line.py data/wireframe_raw data/wireframe
 ```
+
 
 ### Evaluation
 
@@ -107,4 +105,15 @@ the evaluation of AP<sup>H</sup> **may take up to an hour** depending on your CP
 
 See the source code of `eval-sAP.py`, `eval-APH.py`, and `FClip/postprocess.py` for more
 details on evaluation.
+
+### Training
+To train the neural network on GPU 0 (specified by `-d 0`) with the default parameters, execute
+```bash
+python train.py -d 0 -i HG1_D2 config/fclip_HG1_D2.yaml
+python train.py -d 0 -i HG1_D3 config/fclip_HG1_D3.yaml
+python train.py -d 0 -i HG1 config/fclip_HG1.yaml
+python train.py -d 0 -i HG2 config/fclip_HG2.yaml
+python train.py -d 0 -i HG2_LB config/fclip_HG2_LB.yaml
+python train.py -d 0 -i HR config/fclip_HR.yaml
+```
 

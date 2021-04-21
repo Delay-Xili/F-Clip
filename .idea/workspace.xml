@@ -2,24 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="725e0c07-2b09-44b1-bdd5-3b1202f2f254" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/fclip_HG1_D3.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FClip/line_parsing.py" beforeDir="false" afterPath="$PROJECT_DIR$/FClip/line_parsing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FClip/models/hourglass_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/FClip/models/hourglass_line.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FClip/models/stage_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/FClip/models/stage_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FClip/visualize.py" beforeDir="false" afterPath="$PROJECT_DIR$/FClip/visualize.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/base.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/base.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/fclip_HG1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/fclip_HG1.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/fclip_HG1_320.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/fclip_HG1_D2.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/fclip_HG2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/fclip_HG2.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/fclip_HG2_LB.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/fclip_HG2_LB.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/fclip_HR.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/fclip_HR.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draw_pr_curve.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw_pr_curve.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eval-APH.py" beforeDir="false" afterPath="$PROJECT_DIR$/eval-APH.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eval-sAP.py" beforeDir="false" afterPath="$PROJECT_DIR$/eval-sAP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matlab/eval_release.m" beforeDir="false" afterPath="$PROJECT_DIR$/matlab/eval_release.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/wireframe.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/wireframe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset/wireframe_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/wireframe_line.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fig/00329_fclip.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fig/00329_gt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fig/00329_hawp.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fig/00329_lcnn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fig/00329_tplsd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fig/FPS.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fig/FPS.png" beforeDir="false" afterPath="$PROJECT_DIR$/fig/FPS.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fig/table.png" beforeDir="false" afterPath="$PROJECT_DIR$/fig/table.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,18 +28,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eval-sAP.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="128" column="18" selection-start-line="128" selection-start-column="18" selection-end-line="128" selection-end-column="18" />
-              <folding>
-                <element signature="e#438#447#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eval-APH.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="398">
@@ -52,15 +35,6 @@
               <folding>
                 <element signature="e#387#396#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/matlab/eval_release.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1215">
-              <caret line="81" column="44" lean-forward="true" selection-start-line="81" selection-start-column="44" selection-end-line="81" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -90,8 +64,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-1104">
-                <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+              <first_editor relative-caret-position="255">
+                <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
               </first_editor>
               <second_editor />
             </state>
@@ -99,12 +73,56 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/fclip_HG1_D3.yaml">
+        <entry file="file://$PROJECT_DIR$/demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+            <state relative-caret-position="2760">
+              <caret line="184" column="46" selection-start-line="184" selection-start-column="46" selection-end-line="184" selection-end-column="46" />
+              <folding>
+                <element signature="e#2055#2070#0" expanded="true" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dataset/wireframe.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-352">
+              <caret line="216" lean-forward="true" selection-start-line="216" selection-end-line="216" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dataset/wireframe_line.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="65" lean-forward="true" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dataset/york.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2542" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dataset/york_line.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1327">
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fig/Qualitative.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -146,7 +164,6 @@
         <option value="$PROJECT_DIR$/FClip/models/__init__.py" />
         <option value="$PROJECT_DIR$/FClip/trainer.py" />
         <option value="$PROJECT_DIR$/Demo.py" />
-        <option value="$PROJECT_DIR$/demo.py" />
         <option value="$PROJECT_DIR$/build_gif.py" />
         <option value="$PROJECT_DIR$/dataset/crop.py" />
         <option value="$PROJECT_DIR$/FClip/models/pose_hrnet.py" />
@@ -169,6 +186,9 @@
         <option value="$PROJECT_DIR$/eval-sAP.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/eval-APH.py" />
+        <option value="$PROJECT_DIR$/dataset/wireframe.py" />
+        <option value="$PROJECT_DIR$/dataset/wireframe_line.py" />
+        <option value="$PROJECT_DIR$/demo.py" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
@@ -238,8 +258,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$/fig" />
+      <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -301,18 +321,18 @@
       <workItem from="1614739925416" duration="35745000" />
       <workItem from="1617073124837" duration="6449000" />
       <workItem from="1617428622027" duration="3908000" />
-      <workItem from="1618043889122" duration="12454000" />
+      <workItem from="1618043889122" duration="15003000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136861000" />
+    <option name="totallyTimeSpent" value="139410000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1417" height="725" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1650909" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13890909" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -341,27 +361,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/FClip/models/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/opt/anaconda3/lib/python3.7/site-packages/torch/optim/adam.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/opt/anaconda3/lib/python3.7/site-packages/torch/serialization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-733">
-          <caret line="447" column="4" selection-start-line="447" selection-start-column="4" selection-end-line="447" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/opt/anaconda3/lib/python3.7/site-packages/skimage/io/_io.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
@@ -432,13 +431,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fig/table.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/fig/FPS.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fig/Qualitative.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/FClip/trainer.py">
@@ -458,16 +451,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2765">
           <caret line="500" column="40" lean-forward="true" selection-start-line="500" selection-start-column="40" selection-end-line="500" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2940">
-          <caret line="196" column="9" selection-start-line="196" selection-start-column="9" selection-end-line="196" selection-end-column="9" />
-          <folding>
-            <element signature="e#2055#2070#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -512,13 +495,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="426" column="8" selection-start-line="426" selection-start-column="8" selection-end-line="426" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/wireframe_line.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
         </state>
       </provider>
     </entry>
@@ -687,16 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1290">
-          <caret line="86" column="9" lean-forward="true" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
-          <folding>
-            <element signature="e#583#592#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eval-APH.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="398">
@@ -707,11 +673,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fig/Qualitative.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataset/york.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2542" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataset/york_line.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1327">
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataset/wireframe.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-352">
+          <caret line="216" lean-forward="true" selection-start-line="216" selection-end-line="216" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataset/wireframe_line.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="65" lean-forward="true" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fig/table.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1290">
+          <caret line="86" column="9" lean-forward="true" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
+          <folding>
+            <element signature="e#583#592#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2760">
+          <caret line="184" column="46" selection-start-line="184" selection-start-column="46" selection-end-line="184" selection-end-column="46" />
+          <folding>
+            <element signature="e#2055#2070#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-1104">
-            <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+          <first_editor relative-caret-position="255">
+            <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
           </first_editor>
           <second_editor />
         </state>

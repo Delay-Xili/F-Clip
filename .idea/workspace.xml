@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="725e0c07-2b09-44b1-bdd5-3b1202f2f254" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset/wireframe.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/wireframe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset/wireframe_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/wireframe_line.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fig/00329_fclip.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fig/00329_gt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fig/00329_hawp.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fig/00329_lcnn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fig/00329_tplsd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fig/FPS.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fig/FPS.png" beforeDir="false" afterPath="$PROJECT_DIR$/fig/FPS.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fig/table.png" beforeDir="false" afterPath="$PROJECT_DIR$/fig/table.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,8 +52,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="255">
-                <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+              <first_editor relative-caret-position="332">
+                <caret line="54" column="33" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="33" />
               </first_editor>
               <second_editor />
             </state>
@@ -321,12 +309,12 @@
       <workItem from="1614739925416" duration="35745000" />
       <workItem from="1617073124837" duration="6449000" />
       <workItem from="1617428622027" duration="3908000" />
-      <workItem from="1618043889122" duration="15003000" />
+      <workItem from="1618043889122" duration="15194000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139410000" />
+    <option name="totallyTimeSpent" value="139601000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1417" height="725" extended-state="0" />
@@ -730,8 +718,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="255">
-            <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <first_editor relative-caret-position="332">
+            <caret line="54" column="33" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="33" />
           </first_editor>
           <second_editor />
         </state>

@@ -2,7 +2,7 @@
 
 This repository contains the official PyTorch implementation of the paper: 
 *[Xili Dai](https://github.com/Delay-Xili), [Xiaojun Yuan](), [Haigang Gong](), [Yi Ma](https://people.eecs.berkeley.edu/~yima/). 
-["Fully Convolutional Line Parsing."]() *.
+["Fully Convolutional Line Parsing."](https://arxiv.org/abs/2104.11207v2) *.
 
 ## Introduction
 
@@ -117,15 +117,24 @@ python train.py -d 0 -i HR config/fclip_HR.yaml
 ```
 
 
+### Acknowledgement
+We thank [Yichao Zhou](https://github.com/zhou13) and [Haozhi Qi](https://github.com/HaozhiQi) of Berkeley for
+their help during all processes include ideas, experiments,
+and paper writing. This paper would not have been possible
+without their help.
+
+
 ### Citation
 
 If you find F-Clip useful in your research, please consider citing:
 
 ```
-@inproceedings{dai2021fully,
- author={Xili Dai, Xiaojun Yuan, Haigang Gong, and Yi Ma},
- title={Fully Convolutional Line Parsing},
- journal={CoRR},
- year={2021}
+@misc{dai2021fully,
+      title={Fully Convolutional Line Parsing}, 
+      author={Xili Dai and Xiaojun Yuan and Haigang Gong and Yi Ma},
+      year={2021},
+      eprint={2104.11207},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
 ```

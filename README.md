@@ -28,6 +28,7 @@ More random sampled results can be found in the paper.
 ### Quantitative Measures
 
 The following table reports the performance metrics of several wireframes and line detectors on the ShanghaiTech dataset.
+A detail leader board of the ShanghaiTech and YorkUrban datasets can be found [here](https://github.com/Delay-Xili/Wireframe). 
 
 <p align="center">
 <img src="fig/table.png"  width="800">

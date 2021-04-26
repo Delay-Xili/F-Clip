@@ -119,8 +119,7 @@ python train.py -d 0 -i HR config/fclip_HR.yaml
 
 ### Acknowledgement
 We thank [Yichao Zhou](https://github.com/zhou13) and [Haozhi Qi](https://github.com/HaozhiQi) of Berkeley for
-their help during all processes include ideas, experiments,
-and paper writing. This paper would not have been possible
+their help during all processes include ideas and experiments. This project would not have been possible
 without their help.
 
 

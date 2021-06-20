@@ -522,7 +522,9 @@ def tprint(*args):
 def get_hr_config():
     cfg = Box()
     if M.width == 32:
-        hr_yaml = "/home/dxl/Code/F-Clip/config/w32_384x288_adam_lr1e-3.yaml"
+        hr_yaml = "config/w32_384x288_adam_lr1e-3.yaml"
+        if not os.path.isfile(hr_yaml):
+            raise ValueError("change the hr_yaml to your own path.")
     # elif M.width == 48:
     #     hr_yaml = "/home/dxl/Code/faster-lcnn-master/config/w48_384x288_adam_lr1e-3.yaml"
     else:

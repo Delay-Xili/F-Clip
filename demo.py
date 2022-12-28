@@ -51,6 +51,7 @@ import os
 import time
 import cv2 as cv
 import torch
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 threshold = 0.4
 

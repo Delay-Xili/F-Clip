@@ -115,4 +115,5 @@ def line_parsing_from_npz(
     if s_nms > 0:
         line, score = structure_nms(line, score, s_nms)
 
+
     return line, score

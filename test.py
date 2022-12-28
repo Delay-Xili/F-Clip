@@ -25,7 +25,7 @@ import datetime
 from skimage import io
 
 import matplotlib as mpl
-mpl.use("Agg")
+mpl.use('Qt5Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
@@ -37,6 +37,7 @@ from FClip.datasets import LineDataset as WireframeDataset
 
 from FClip.models import MultitaskHead, hg, hgl, hr
 from FClip.models.stage_1 import FClip
+
 
 
 _PLOT_nlines = 100

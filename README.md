@@ -2,7 +2,7 @@
 
 This repository contains the official PyTorch implementation of the paper: 
 *[Xili Dai](https://github.com/Delay-Xili), Haigang Gong, Shuai Wu, [Xiaojun Yuan](https://yuan-xiaojun.github.io/Yuan-Xiaojun/), [Yi Ma](https://people.eecs.berkeley.edu/~yima/). 
-["Fully Convolutional Line Parsing."](https://arxiv.org/abs/2104.11207v2) *.
+["Fully Convolutional Line Parsing."](https://arxiv.org/abs/2104.11207v3) *.
 
 ## Introduction
 

@@ -54,7 +54,7 @@ mkdir data logs post
 ### Testing Pre-trained Models
 
 You can download our reference 6 pre-trained models HG1_D2, HG1_D3, HG1, HG2, HG2_LB, and HR from [Google
-Drive](https://drive.google.com/file/d/1jMZB-kYTNAGaVPW0FBLTAQMc3m3vR-_P/view?usp=sharing).  Those models were
+Drive](https://drive.google.com/drive/folders/1FCIveVKX3HQnSBBKJ5WFPgTRYhFT40af?usp=sharing).  Those models were
 trained with their corresponding settings `config/fclip_xxx.yaml`.  
 To generate wireframes on the validation dataset with the pretrained model, execute
 

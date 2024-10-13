@@ -75,7 +75,7 @@ Here, `--output_dir` is specifying the directory where the results will store, a
 ### Downloading the Processed Dataset
 You can download the processed dataset `wireframe.zip` and `york.zip` manually from Google
 Drive ([link1](https://drive.google.com/file/d/1q8pQzYBJPh3brHUhjkVIxfbLk0XEigIe/view?usp=sharing), 
-[link2](https://drive.google.com/file/d/1lapVcNtw7SNzH8cpHj2H6tIzyAom4MJe/view?usp=sharing)). 
+[link2](https://drive.google.com/file/d/1lapVcNtw7SNzH8cpHj2H6tIzyAom4MJe/view?usp=sharing)) or LCNN repo [link3](https://github.com/zhou13/lcnn). 
 
 #### Processing the Dataset
 *Optionally*, you can pre-process (e.g., generate heat maps, do data augmentation) the dataset from
